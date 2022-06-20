@@ -20,9 +20,25 @@ namespace HotelApp
             InitializeComponent();
         }
 
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            RoomInfo.ID = Int32.Parse(row.Cells[0].Value.ToString());
+            RoomInfo.Title = row.Cells[1].Value.ToString();
+        }
+
         private void Form1_Shown(object sender, EventArgs e)
         {
-            SelectNodeByName(treeView1, "Постояльцы");
+            if (PersonalInfo.isAuth != true)
+            {
+                this.Hide();
+                Form Auth = new Auth();
+                Auth.ShowDialog();
+            }
+            else
+            {
+                SelectNodeByName(treeView1, "Постояльцы");
+            }
         }
 
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
@@ -37,6 +53,11 @@ namespace HotelApp
                 Form AddRoom = new Form3();
                 AddRoom.ShowDialog();
             }
+            else if (treeView1.Nodes[2].IsSelected == true)
+            {
+                Form AddPersonal = new Form4();
+                AddPersonal.ShowDialog();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,7 +71,7 @@ namespace HotelApp
             {
                 if (item.Text == nameNode)
                 {
-                    treeView.SelectedNode = item;
+                    treeView.SelectedNode = item; 
                 }
             }
 
@@ -74,9 +95,7 @@ namespace HotelApp
                     dataReader = cmd.ExecuteReader(); // Отправка запроса
                     if (dataReader.HasRows)
                     {
-                        DataTable table = new DataTable();
-                        table.Load(dataReader);
-                        dataGridView1.DataSource = table;
+                        dataGridView1.DataSource = UpdateGrid(dataReader);
                         dataGridView1.Columns[1].HeaderText = "ФИО";
                         dataGridView1.Columns[2].HeaderText = "Моб.телефон";
                         dataGridView1.Columns[3].HeaderText = "Паспорт";
@@ -84,6 +103,7 @@ namespace HotelApp
                     dataReader.Close();
                     conn.Close();
                     GC.Collect();
+                    dataGridView1.ContextMenuStrip = null;
                     break;
                 }
                 case 1:
@@ -95,27 +115,78 @@ namespace HotelApp
                     dataReader = cmd.ExecuteReader(); // Отправка запроса
                     if (dataReader.HasRows)
                     {
-                        DataTable table = new DataTable();
-                        table.Load(dataReader);
-                        dataGridView1.DataSource = table;
+                        dataGridView1.DataSource = UpdateGrid(dataReader);
+                        dataGridView1.Columns[0].HeaderText = "№";
                         dataGridView1.Columns[1].HeaderText = "Название";
                         dataGridView1.Columns[2].HeaderText = "Тип";
                         dataGridView1.Columns[3].HeaderText = "Май";
                         dataGridView1.Columns[4].HeaderText = "Июнь";
                         dataGridView1.Columns[5].HeaderText = "Июль-Август";
                         dataGridView1.Columns[6].HeaderText = "Сентябрь";
+                        dataGridView1.Columns[7].HeaderText = "Мебель";
+                        dataGridView1.Columns[8].HeaderText = "Кол-во кроватей";
                     }
                     dataReader.Close();
                     conn.Close();
                     GC.Collect();
+                    dataGridView1.ContextMenuStrip = contextMenuAddGuetToRoom;
+                    break;
+                }
+                case 2:
+                {
+                    conn.Open();
+                    MySqlDataReader dataReader;
+                    string query = "SELECT * FROM `personal`";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);// Обращение к БД
+                    dataReader = cmd.ExecuteReader(); // Отправка запроса
+                    if (dataReader.HasRows)
+                    {
+                        dataGridView1.DataSource = UpdateGrid(dataReader);
+                        dataGridView1.Columns[1].HeaderText = "ФИО";
+                        dataGridView1.Columns[2].HeaderText = "Должность";
+                        dataGridView1.Columns[3].HeaderText = "Мобильный телефон";
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                    GC.Collect();
+                    dataGridView1.ContextMenuStrip = null;
                     break;
                 }
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        private DataTable UpdateGrid(MySqlDataReader dataReader)
         {
+            DataTable table = new DataTable();
+            table.Load(dataReader);
+            return table;
+        }
+
+        private void добавитьГостяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form AddGuestToRoom = new Form5();
+            AddGuestToRoom.Text = "Добавить гостя в" + RoomInfo.Title;
+            AddGuestToRoom.ShowDialog();
 
         }
     }
+    class RoomInfo
+    {
+        static public int ID { get; set; }
+        static public string Title { get; set; }
+    }
+    class GuestInfo
+    {
+        static public int ID { get; set; }
+        static public int roomID { get; set; }
+        static public string Name { get; set; }
+    }
+
+    class PersonalInfo
+    {
+        static public bool isAuth { get; set; }
+        static public bool isAdmin { get; set; }
+        static public int ID { get; set; }
+        static public string Name { get; set; }
+    }
+
 }

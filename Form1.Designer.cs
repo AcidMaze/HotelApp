@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Постояльцы");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Номера");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Постояльцы");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Комнаты");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Персонал");
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -42,38 +41,27 @@
             this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.contextMenuAddGuetToRoom = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьГостяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выселитьГостяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.информацияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.contextMenuAddGuetToRoom.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Location = new System.Drawing.Point(179, 85);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(523, 350);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.информацияToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
-            // 
-            // информацияToolStripMenuItem
-            // 
-            this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-            this.информацияToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.информацияToolStripMenuItem.Text = "Информация";
+            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             // 
             // menuStrip1
             // 
@@ -135,16 +123,19 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 24);
+            this.treeView1.Location = new System.Drawing.Point(12, 35);
             this.treeView1.Name = "treeView1";
-            treeNode7.Name = "Guests";
-            treeNode7.Text = "Постояльцы";
-            treeNode8.Name = "Rooms";
-            treeNode8.Text = "Номера";
+            treeNode1.Name = "Guests";
+            treeNode1.Text = "Постояльцы";
+            treeNode2.Name = "Rooms";
+            treeNode2.Text = "Комнаты";
+            treeNode3.Name = "Personal";
+            treeNode3.Text = "Персонал";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
-            this.treeView1.Size = new System.Drawing.Size(161, 411);
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            this.treeView1.Size = new System.Drawing.Size(161, 400);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -155,34 +146,39 @@
             this.mySqlCommand1.EnableCaching = false;
             this.mySqlCommand1.Transaction = null;
             // 
-            // label1
+            // contextMenuAddGuetToRoom
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(594, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "00:00";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.contextMenuAddGuetToRoom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьГостяToolStripMenuItem,
+            this.выселитьГостяToolStripMenuItem,
+            this.информацияToolStripMenuItem1});
+            this.contextMenuAddGuetToRoom.Name = "contextMenuAddGuetToRoom";
+            this.contextMenuAddGuetToRoom.Size = new System.Drawing.Size(160, 70);
             // 
-            // label2
+            // добавитьГостяToolStripMenuItem
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(565, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 24);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "00/00/0000";
+            this.добавитьГостяToolStripMenuItem.Name = "добавитьГостяToolStripMenuItem";
+            this.добавитьГостяToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.добавитьГостяToolStripMenuItem.Text = "Добавить гостя";
+            this.добавитьГостяToolStripMenuItem.Click += new System.EventHandler(this.добавитьГостяToolStripMenuItem_Click);
+            // 
+            // выселитьГостяToolStripMenuItem
+            // 
+            this.выселитьГостяToolStripMenuItem.Name = "выселитьГостяToolStripMenuItem";
+            this.выселитьГостяToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.выселитьГостяToolStripMenuItem.Text = "Выселить гостя";
+            // 
+            // информацияToolStripMenuItem1
+            // 
+            this.информацияToolStripMenuItem1.Name = "информацияToolStripMenuItem1";
+            this.информацияToolStripMenuItem1.Size = new System.Drawing.Size(159, 22);
+            this.информацияToolStripMenuItem1.Text = "Информация";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 447);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
@@ -194,11 +190,11 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.contextMenuAddGuetToRoom.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,10 +211,10 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnEdit;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuAddGuetToRoom;
+        private System.Windows.Forms.ToolStripMenuItem добавитьГостяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выселитьГостяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem1;
     }
 }
 

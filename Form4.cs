@@ -10,29 +10,15 @@ using System.Windows.Forms;
 using MySql.Conn;
 using MySql.Data.MySqlClient;
 
+
 namespace HotelApp
 {
-    public partial class Form3 : Form
+    public partial class Form4 : Form
     {
         private MySqlConnection conn = DBUtils.GetDBConnection();
-        public Form3()
+        public Form4()
         {
             InitializeComponent();
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripBtnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void toolStripBtnAccept_Click(object sender, EventArgs e)
@@ -40,16 +26,15 @@ namespace HotelApp
             conn.Open();
             if (cueTextBox1.Text != "" & cueTextBox2.Text != "" & cueTextBox3.Text != "")
             {
-                string qry = "INSERT INTO `rooms` (title, type, furniture, bed)" + " VALUES (@title,@type,@furniture,@bed);";
+                string qry = "INSERT INTO `personal` (name, phone, dolznost)" + " VALUES (@name, @phone, @dolznost);";
                 MySqlCommand command = new MySqlCommand(qry, conn);// Обращение к БД
-                command.Parameters.AddWithValue("@title", cueTextBox1.Text);
-                command.Parameters.AddWithValue("@type", cueTextBox2.Text);
-                command.Parameters.AddWithValue("@furniture", richTextBox1.Text);
-                command.Parameters.AddWithValue("@bed", cueTextBox3.Text);
+                command.Parameters.AddWithValue("@name", cueTextBox1.Text);
+                command.Parameters.AddWithValue("@phone", cueTextBox2.Text);
+                command.Parameters.AddWithValue("@dolznost", cueTextBox3.Text);
                 command.ExecuteNonQuery(); // Отправка запроса
                 conn.Close();
-                GC.Collect();
                 MessageBox.Show(cueTextBox1.Text + " добавлен", "Закрыть");
+                GC.Collect();
                 this.Close();
             }
             else
