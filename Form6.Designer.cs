@@ -39,7 +39,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(28, 38);
+            this.monthCalendar1.Location = new System.Drawing.Point(72, 48);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.TodayDate = new System.DateTime(((long)(0)));
@@ -54,42 +54,46 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(24, 9);
+            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 20);
+            this.label1.Size = new System.Drawing.Size(305, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "Укажите период проживания";
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBtnAccept,
             this.toolStripBtnCancel});
-            this.toolStrip1.Location = new System.Drawing.Point(28, 202);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 215);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(250, 55);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(313, 55);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripBtnAccept
             // 
-            this.toolStripBtnAccept.Image = global::HotelApp.Properties.Resources.AddNew;
+            this.toolStripBtnAccept.Font = new System.Drawing.Font("Malgun Gothic", 12F);
+            this.toolStripBtnAccept.Image = global::HotelApp.Properties.Resources.Add;
             this.toolStripBtnAccept.ImageTransparentColor = System.Drawing.Color.Black;
             this.toolStripBtnAccept.Name = "toolStripBtnAccept";
-            this.toolStripBtnAccept.Size = new System.Drawing.Size(106, 52);
-            this.toolStripBtnAccept.Text = "Принять";
+            this.toolStripBtnAccept.Size = new System.Drawing.Size(133, 52);
+            this.toolStripBtnAccept.Text = "Добавить";
             this.toolStripBtnAccept.Click += new System.EventHandler(this.toolStripBtnAccept_Click);
             // 
             // toolStripBtnCancel
             // 
+            this.toolStripBtnCancel.Font = new System.Drawing.Font("Malgun Gothic", 12F);
             this.toolStripBtnCancel.Image = global::HotelApp.Properties.Resources.Cancel;
             this.toolStripBtnCancel.ImageTransparentColor = System.Drawing.Color.Black;
             this.toolStripBtnCancel.Name = "toolStripBtnCancel";
-            this.toolStripBtnCancel.Size = new System.Drawing.Size(101, 52);
+            this.toolStripBtnCancel.Size = new System.Drawing.Size(118, 52);
             this.toolStripBtnCancel.Text = "Отмена";
             this.toolStripBtnCancel.Click += new System.EventHandler(this.toolStripBtnCancel_Click);
             // 
@@ -97,12 +101,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(256, 266);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(313, 270);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.monthCalendar1);
             this.Name = "Form6";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Укажите дату";
+            this.Load += new System.EventHandler(this.Form6_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

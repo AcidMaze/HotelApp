@@ -16,30 +16,43 @@ namespace HotelApp
     public partial class Form4 : Form
     {
         private MySqlConnection conn = DBUtils.GetDBConnection();
+        private bool connOpen = false;
         public Form4()
         {
             InitializeComponent();
+            try
+            {
+                if (connOpen == false)
+                {
+                    conn.Open();
+                    connOpen = true;
+                }
+            }
+            catch
+            {
+                connOpen = false;
+                conn.Close();
+            }
         }
 
         private void toolStripBtnAccept_Click(object sender, EventArgs e)
         {
-            conn.Open();
             if (cueTextBox1.Text != "" & cueTextBox2.Text != "" & cueTextBox3.Text != "")
             {
-                string qry = "INSERT INTO `personal` (name, phone, dolznost)" + " VALUES (@name, @phone, @dolznost);";
+                string qry = "INSERT INTO `personal` (name, phone, dolznost, login, password)" + " VALUES (@name, @phone, @dolznost, @login, @password);";
                 MySqlCommand command = new MySqlCommand(qry, conn);// Обращение к БД
                 command.Parameters.AddWithValue("@name", cueTextBox1.Text);
                 command.Parameters.AddWithValue("@phone", cueTextBox2.Text);
                 command.Parameters.AddWithValue("@dolznost", cueTextBox3.Text);
+                command.Parameters.AddWithValue("@login", cueTextBox4.Text);
+                command.Parameters.AddWithValue("@password", cueTextBox5.Text);
                 command.ExecuteNonQuery(); // Отправка запроса
-                conn.Close();
-                MessageBox.Show(cueTextBox1.Text + " добавлен", "Закрыть");
+                MessageBox.Show(cueTextBox1.Text + " добавлен как сотрудник", "Закрыть");
                 GC.Collect();
                 this.Close();
             }
             else
             {
-                conn.Close();
                 MessageBox.Show("Основные поля должны быть заполнены.", "Закрыть");
             }
         }

@@ -6,7 +6,8 @@ namespace MySql.Conn
     {
         public static MySqlConnection GetDBConnection()
         {
-            return DBMySQLUtils.GetDBConnection("localhost", 3306, "hotel_db", "root", "");
+            return DBMySQLUtils.GetDBConnection("localhost", 3306, 
+                "hotel_db", "root", "");
         }
     }
 }

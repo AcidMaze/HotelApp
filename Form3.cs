@@ -15,9 +15,24 @@ namespace HotelApp
     public partial class Form3 : Form
     {
         private MySqlConnection conn = DBUtils.GetDBConnection();
+        private bool connOpen = false;
         public Form3()
         {
+
             InitializeComponent();
+            try
+            {
+                if (connOpen == false)
+                {
+                    conn.Open();
+                    connOpen = true;
+                }
+            }
+            catch
+            {
+                connOpen = false;
+                conn.Close();
+            }
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -37,7 +52,6 @@ namespace HotelApp
 
         private void toolStripBtnAccept_Click(object sender, EventArgs e)
         {
-            conn.Open();
             if (cueTextBox1.Text != "" & cueTextBox2.Text != "" & cueTextBox3.Text != "")
             {
                 string qry = "INSERT INTO `rooms` (title, type, furniture, bed)" + " VALUES (@title,@type,@furniture,@bed);";
@@ -47,16 +61,19 @@ namespace HotelApp
                 command.Parameters.AddWithValue("@furniture", richTextBox1.Text);
                 command.Parameters.AddWithValue("@bed", cueTextBox3.Text);
                 command.ExecuteNonQuery(); // Отправка запроса
-                conn.Close();
                 GC.Collect();
                 MessageBox.Show(cueTextBox1.Text + " добавлен", "Закрыть");
                 this.Close();
             }
             else
             {
-                conn.Close();
                 MessageBox.Show("Основные поля должны быть заполнены.", "Закрыть");
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,14 +41,12 @@
             this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            this.contextMenuAddGuetToRoom = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.добавитьГостяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выселитьГостяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.информацияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.contextMenuAddGuetToRoom.SuspendLayout();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -91,38 +89,43 @@
             this.toolStripBtnDelete});
             this.toolStrip1.Location = new System.Drawing.Point(179, 35);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(332, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(406, 47);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripBtnAdd
             // 
+            this.toolStripBtnAdd.Font = new System.Drawing.Font("Malgun Gothic", 12F);
             this.toolStripBtnAdd.Image = global::HotelApp.Properties.Resources.Add;
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(103, 44);
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(125, 44);
             this.toolStripBtnAdd.Text = "Добавить";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripBtnAdd_Click);
             // 
             // toolStripBtnEdit
             // 
+            this.toolStripBtnEdit.Font = new System.Drawing.Font("Malgun Gothic", 12F);
             this.toolStripBtnEdit.Image = global::HotelApp.Properties.Resources.Edit;
             this.toolStripBtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnEdit.Name = "toolStripBtnEdit";
-            this.toolStripBtnEdit.Size = new System.Drawing.Size(131, 44);
+            this.toolStripBtnEdit.Size = new System.Drawing.Size(165, 44);
             this.toolStripBtnEdit.Text = "Редактировать";
             this.toolStripBtnEdit.Click += new System.EventHandler(this.toolStripBtnEdit_Click);
             // 
             // toolStripBtnDelete
             // 
+            this.toolStripBtnDelete.Font = new System.Drawing.Font("Malgun Gothic", 12F);
             this.toolStripBtnDelete.Image = global::HotelApp.Properties.Resources.Delete;
             this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnDelete.Name = "toolStripBtnDelete";
-            this.toolStripBtnDelete.Size = new System.Drawing.Size(95, 44);
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(113, 44);
             this.toolStripBtnDelete.Text = "Удалить";
+            this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
             // 
             // treeView1
             // 
+            this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeView1.Location = new System.Drawing.Point(12, 35);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Guests";
@@ -146,38 +149,25 @@
             this.mySqlCommand1.EnableCaching = false;
             this.mySqlCommand1.Transaction = null;
             // 
-            // contextMenuAddGuetToRoom
+            // contextMenu
             // 
-            this.contextMenuAddGuetToRoom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьГостяToolStripMenuItem,
-            this.выселитьГостяToolStripMenuItem,
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.информацияToolStripMenuItem1});
-            this.contextMenuAddGuetToRoom.Name = "contextMenuAddGuetToRoom";
-            this.contextMenuAddGuetToRoom.Size = new System.Drawing.Size(160, 70);
-            // 
-            // добавитьГостяToolStripMenuItem
-            // 
-            this.добавитьГостяToolStripMenuItem.Name = "добавитьГостяToolStripMenuItem";
-            this.добавитьГостяToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.добавитьГостяToolStripMenuItem.Text = "Добавить гостя";
-            this.добавитьГостяToolStripMenuItem.Click += new System.EventHandler(this.добавитьГостяToolStripMenuItem_Click);
-            // 
-            // выселитьГостяToolStripMenuItem
-            // 
-            this.выселитьГостяToolStripMenuItem.Name = "выселитьГостяToolStripMenuItem";
-            this.выселитьГостяToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.выселитьГостяToolStripMenuItem.Text = "Выселить гостя";
+            this.contextMenu.Name = "contextMenuAddGuetToRoom";
+            this.contextMenu.Size = new System.Drawing.Size(149, 26);
             // 
             // информацияToolStripMenuItem1
             // 
             this.информацияToolStripMenuItem1.Name = "информацияToolStripMenuItem1";
-            this.информацияToolStripMenuItem1.Size = new System.Drawing.Size(159, 22);
+            this.информацияToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
             this.информацияToolStripMenuItem1.Text = "Информация";
+            this.информацияToolStripMenuItem1.Click += new System.EventHandler(this.информацияToolStripMenuItem1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(712, 447);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.toolStrip1);
@@ -194,7 +184,7 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.contextMenuAddGuetToRoom.ResumeLayout(false);
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,9 +201,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnEdit;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuAddGuetToRoom;
-        private System.Windows.Forms.ToolStripMenuItem добавитьГостяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выселитьГостяToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem1;
     }
 }

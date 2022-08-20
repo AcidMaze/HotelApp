@@ -35,10 +35,8 @@ namespace HotelApp
                 PersonalInfo.isAuth = true; // Пользователь авторизован
                 PersonalInfo.isAdmin = dataReader.GetBoolean(6); // Пользователь авторизован
                 dataReader.Close();
-                this.Close();
                 conn.Close();
-                Form main = new Form1();
-                main.Show();
+                this.Close();
             }
             else
             {
@@ -48,5 +46,9 @@ namespace HotelApp
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace HotelApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Auth()); // Показать форму авторизации
             Application.Run(new Form1());
         }
     }
